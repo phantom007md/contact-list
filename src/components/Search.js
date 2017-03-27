@@ -5,7 +5,7 @@ class Search extends Component {
     return (
       <div className="ui left icon action input">
         <i className="search icon"></i>
-        <input type="text" placeholder="Enter ..." />
+        <input onChange={this.props.handler} type="text" placeholder="Enter ..." />
         <div className="ui blue submit button">Search</div>
       </div>
     );

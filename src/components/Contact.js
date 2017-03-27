@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 
 class Search extends Component {
+  removeContact = e => {
+    this.props.removeHandler(this.props.index);
+  }
   render() {
     let { phone, name } = this.props
 
@@ -9,7 +12,7 @@ class Search extends Component {
         <div className="content">
           <div className="header">
           {name} / {phone}
-          <i className="icon trash" style={{float: 'right'}}></i>
+          <i onClick={this.removeContact} className="icon trash" style={{float: 'right'}}></i>
           </div>
         </div>
       </div>

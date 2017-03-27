@@ -1,23 +1,46 @@
 import React, { Component } from 'react';
+import Field from './field';
 
 class Modal extends Component {
+  constructor(props){
+    super(props)
+  }
+
+  person = {
+    name : '',
+    phone : ''
+  }
+
+  formSubmitHandler = (e) => {
+    e.preventDefault();
+    this.props.handler(this.person);
+    //----refs wayy---------------------------
+    this.refs.name_field.refs.input.value = ''
+    this.refs.phone_field.refs.input.value = ''
+  }
+
+  nameHandler = (e) => {
+    this.person.name = e.target.value;
+  }
+
+  phoneHandler = (e) => {
+    this.person.phone = e.target.value;
+  }
+
   render() {
     return (
-      <form className="ui form modal" id="new-contact-modal">
+      <form
+       style={{display: this.props.show ? 'block' : 'none'}}
+       onSubmit = {this.formSubmitHandler}
+       className="ui form modal" id="new-contact-modal">
         <div className="header">Add new contact</div>
         <div className="content">
-          <div className="field">
-            <label>Full name</label>
-            <input type="text" placeholder="Full Name" />
-          </div>
-          <div className="field">
-            <label>Number</label>
-            <input type="text" placeholder="Number" />
-          </div>
+          <Field ref='name_field' handler={this.nameHandler} label="Full name" />
+          <Field ref='phone_field' handler={this.phoneHandler} label="Phone" />
         </div>
         <div className="actions">
           <button className="ui approve button">Create</button>
-          <div className="ui cancel button">Cancel</div>
+          <div onClick={this.props.hideHandler} className="ui cancel button">Cancel</div>
         </div>
       </form>
     );
