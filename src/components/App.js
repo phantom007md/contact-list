@@ -68,8 +68,6 @@ class App extends Component {
 
   render() {
 
-return <div>xani</div>//react.createElement('div',{className:'asdasd'},)
-
     return (
       <div>
         <div className="ui padded container segment">
